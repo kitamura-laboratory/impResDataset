@@ -1,4 +1,4 @@
-<link rel="stylesheet" href="white.css">
+<link rel="stylesheet" href="./white.css">
 
 # マイクロホンアレイ間の非同期性を模擬可能なインパルス応答データセット
 
