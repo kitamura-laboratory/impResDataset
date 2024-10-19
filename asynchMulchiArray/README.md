@@ -1,5 +1,3 @@
-<link rel="stylesheet" href="path/to/your/style.css">
-
 # マイクロホンアレイ間の非同期性を模擬可能なインパルス応答データセット
 
 ## 概要
@@ -75,13 +73,13 @@ MATLABのコマンドウィンドウ上で下記の関数を実行すること�
 
 - **マイクロホン**: JTS CX-500（コンデンサマイク）
   - 4つのマイクロホンを等間隔で直線状に配置して1つのマイクロホンアレイを構成
-![alt text](./image/image.png)
+![alt text](./image/image.jpg)
 - **スピーカー**: AURATONE 5C Super Sound Cube
-![alt text](./image/image-1.png)
+![alt text](./image/image-1.jpg)
 - **パワーアンプ**: AURATONE A2-30（5C Super Sound Cube専用）
-![alt text](./image/image-2.png) ![alt text](./image/image-3.png)
+![alt text](./image/image-2.jpg) ![alt text](./image/image-3.jpg)
 - **オーディオインターフェース**: YAMAHA DM3（96kHz/32ビットのサンプリング周波数で最大8チャンネルの同期再生と16チャンネルの同期録音が可能）
-![alt text](./image/image-4.png)
+![alt text](./image/image-4.jpg)
 - **AD/DAコンバーター**: Tio1608-D2（全チャンネルの同期AD/DA変換を実現）
 - **ソフトウェア**: MATLABのImpulse Response Measurerツール
   - Sample Rate [Hz] : 96000
@@ -98,7 +96,7 @@ MATLABのコマンドウィンドウ上で下記の関数を実行すること�
   - Excitation Level [dBFS] : -6
 
 ### システム構成図
-![alt text](./image/image-5.png)
+![alt text](./image/image-5.jpg)
 
 ## マイクロホンアレイとスピーカーの配置
 
@@ -107,12 +105,12 @@ MATLABのコマンドウィンドウ上で下記の関数を実行すること�
 - **室温**: 16°C
 - **湿度**: 45%
 - **部屋の大きさ**: 8.5 m × 6.7 m ×  m
-![alt text](./image/image-6.png) ![alt text](./image/image-7.png)
+<img src="./image/image-6.jpg" width="75%"> <img src="./image/image-7.jpg" width="75%">
 - **マイクロホンアレイの高さ**: 床から1.2 m
 - **スピーカーコーンの高さ**: 床から1.2 m
-![alt text](./image/image-11.png)
+<img src="./image/image-11.jpg" width="75%">
 - **マイクロホンアレイの間隔**: 1 cm
-![alt text](./image/image-26.png)
+<img src="./image/image-26.jpg" width="75%">
 
 ### オープンラウンジ
 
@@ -120,28 +118,28 @@ MATLABのコマンドウィンドウ上で下記の関数を実行すること�
 - **室温**: 19°C
 - **湿度**: 35%
 - **部屋の大きさ**: 8 m × 7 m × 2.2 m
-![alt text](./image/image-14.png) ![alt text](./image/image-15.png)
+<img src="./image/image-14.jpg" width="75%"> <img src="./image/image-15.jpg" width="75%">
 - **マイクロホンアレイの高さ**: 床から1.2 m
 - **スピーカーコーンの高さ**: 床から1.2 m
-![alt text](./image/image-16.png)
+<img src="./image/image-16.jpg" width="75%">
 - **マイクロホンアレイの間隔**: 1 cm
-![alt text](./image/image-27.png)
+<img src="./image/image-27.jpg" width="75%">
 
 ## 収録環境
 以下の5つの状況をもとに、複数のマイクロホンアレイ及び音源を配置しました．
 
 - **マイクロホンアレイが2個のケース**
 
-![alt text](./image/image-18.png)
+![alt text](./image/image-18.jpg)
 
-![alt text](./image/image-19.png)
+![alt text](./image/image-19.jpg)
 
-![alt text](./image/image-20.png)
+![alt text](./image/image-20.jpg)
 
 - **マイクロホンアレイが3個のケース**
 
-![alt text](./image/image-21.png)
+![alt text](./image/image-21.jpg)
 
-![alt text](./image/image-22.png)
+![alt text](./image/image-22.jpg)
 
 ---
