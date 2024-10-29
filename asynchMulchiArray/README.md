@@ -1,87 +1,87 @@
-# マイクロホンアレイ間の非同期性を模擬可能なインパルス応答データセット
+# Inpulse response dataset that can simulate asynchrony between microphone arrays
 
-## 概要
-このインパルス応答データセットは，全てのマイクロホンが完全同期された状態で収録されたものです．マイクロホンアレイ間の同期はできないという想定の下，シミュレーションにより録音開始時刻及びサンプリング周波数のズレを設定することで，マイクロホンアレイ間の非同期条件を再現することを目的としています．このデータセットは音楽練習室及びオープンラウンジの2箇所で，かつ様々な状況の下，収録しました．また，シミュレーションを実施するためのスクリプトも同梱しています．
+## Summary
+This inpulse response dataset was recorded by perfectly synchronized micropohones. Under the assumption that between microphone arrays can not be synchronized, the simulation aim is to reproduce asynchronous conditions between microphone arrays by setting the delay of recording start time and the deviation of the sample rate. This dataset was recorded in two locations, a music practice room and an open lounge, and under a variety of conditions. The script for running the simulations are also included.
 
-## フォルダ構成について
+## Folder Structure
 ~~~
 impulse/
-├── impulse_dataset/  # 入力となるWAVファイルを格納するフォルダ
-│   └── (120ファイル)
+├── impulse_dataset/  # Folder to store input WAV files
+│   └── (120 files)
 ├── processWavFiles
 ├── image/
-|    └── (19ファイル)
-└── readme.md
+|    └── (19 files)
+└── README.md
 ~~~
 
-## データセットについて
-- **格納場所**: impulse_detaset/roomType_recCond_soundSource_ir_micCh.wav
-  - **roomType**: 収録場所(オープンラウンジ：openLounge, 音楽練習室：musicRoom)
-  - **recCond**: 収録環境(2A, 2B, 2C, 3A, 3B)
-  - **soundSource**: 音源(int1, int2, int3, target)
-  - **micCh**: マイクロホンアレイのチャンネル(1~12)
+## Dataset
+- **Storage Location**: impulse_detaset/roomType_recCond_soundSource_ir_micCh.wav
+  - **roomType**: Recording location(openLounge or musicRoom)
+  - **recCond**: Recording condition(2A, 2B, 2C, 3A or 3B)
+  - **soundSource**: Sound source(int1, int2, int3 or target)
+  - **micCh**: channel of microphone(1~12)
 
-## スクリプトについて
-MATLABのコマンドウィンドウ上で下記の関数を実行することで，所望する録音開始時刻及びサンプリング周波数のズレが適用されたWAVファイルを出力することができます．
-- **構文**: `processWavFiles(roomType, recCond, fs, recTimeDelay, recFsDeviation)`
+## Script
+By executing the following function in the MATLAB command window, you can output a WAV files with the desired delay of recording start time and deviation of sample rate.
+- **Syntax**: `processWavFiles(roomType, recCond, fs, recTimeDelay, recFsDeviation)`
 
-引数|説明|入力形式
+Argument|Description|Input Format
 -|-|-
-`roomType`|収録場所<br>(オープンラウンジ：openLounge, 音楽練習室：musicRoom)|'openLounge'/'musicRoom'<br>詳細は[マイクロホンアレイとスピーカーの配置](#マイクロホンアレイとスピーカーの配置)を参照
-`recCond`|収録環境(2A, 2B, 2C, 3A, 3B)|'2A'/'2B'/'2C'/'3A'/'3B'<br>詳細は[収録環境](#収録環境)を参照
-`fs`|所望するサンプリング周波数<br>(単位は[Hz])|区間(0, 96000]内の整数値
-`recTimeDelay`|所望する録音開始時刻の遅延<br>(単位は[s])|マイクロホンアレイごとの<br>遅延時間を含む行ベクトル
-`recFsDeviation`|所望するサンプリング周波数の<br>基準値(fs)からのずれ(単位は[ppm])|マイクロホンアレイごとの<br>ずれを含む行ベクトル
+`roomType`|Recording Location<br>(openLounge or musicRoom)|'openLounge'/'musicRoom'<br>See [Microphone Arrays and Speaker Placement](#microphone-arrays-and-speaker-placement) for details
+`recCond`|Recording Condition(2A, 2B, 2C, 3A or 3B)|'2A'/'2B'/'2C'/'3A'/'3B'<br>See [Recording Condition](#recording-condition) for details
+`fs`|Desired sample rate<br>(Unit is [Hz])|Integer value in the interval (0, 96000]
+`recTimeDelay`|Desired delay of recording start time<br>(Unit is [s])|Row vector containing the delay time<br>for each microphone array
+`recFsDeviation`|Deviation from the standard value (fs)<br>of desired sample rate(Unit is [ppm])|Row vector containing the deviation<br>for each microphone array
  
-### 例（マイクロホンアレイが2個の場合）
+### Example (with 2 microphone arrays)
 `processWavFiles("openLounge", "2A", 48000, [0, 2], [0, 10])`
-- 収録場所は"openLounge"
-- 収録環境は"2A"
-- 所望するサンプリング周波数は48000 Hz
-- 2つ目のマイクロホンアレイの録音開始時刻を2 s遅らせる
-- 2つ目のマイクロホンアレイのサンプリング周波数を2 ppmずらす
+- Recording location is "openLounge"
+- Recording condition is "2A"
+- Desired sample rate is 48000 Hz
+- Delay the recording start time of the second microphone array by 2 s
+- Shift the sample rate of the second microphone array by 2 ppm
 
-### 例（マイクロホンアレイが3個の場合）
+### Example (with 3 microphone arrays)
 `processWavFiles("musicRoom", "3B", 96000, [1, 2, 3], [2, 4, 6])`
-- 収録場所は"musicRoom"
-- 収録環境は"3B"
-- 所望するサンプリング周波数は96000 Hz
-- 1つ目のマイクロホンアレイの録音開始時刻を1 s，2つ目を2 s，3つ目を3 s遅らせる
-- 1つ目のマイクロホンアレイのサンプリング周波数をを2 ppm，2つ目を4 ppm，3つ目を6 ppmずらす
+- Recording location is "musicRoom"
+- Recording condition is "3B"
+- Desired sample rate is 96000 Hz
+- Delay the recording start time for the first microphone array by 1 s, the second by 2 s, and the third by 3 s
+- Shift the sample rate for the first microphone array by 2 ppm, the second by 4 ppm, and the third by 6 ppm
 
-## 出力ファイルについて
-関数processWavFilesを実行することで，impulseフォルダ内に新たにoutputフォルダが生成され，その中に出力ファイルが生成されます．出力ファイル名は関数に指定したサンプリング周波数，録音開始時刻の遅延，及びサンプリング周波数のずれが表示されるようになっています．
+## Output Files
+By executing the function processWavFiles, a new "output" folder is created in the impulse folder, and output files are generated in this folder. The output file names display the sample rate, the delay of recording start time, and the deviation of sample rate specified in the function.
 
-### 例
-- `processWavFiles("openLounge", "2A", 48000, [0, 2], [0, 10])`を実行した場合
-  - **出力ファイル名**: soundSrc_fs48000_td0.000-2.000_fd0.000-10.000_micCh.wav
-    - **soundSrc**: 音源（int1, int2, targetの3種類）
-    - **td**: 指定した録音開始時刻の遅延
-    - **fd**: 指定したサンプリング周波数のずれ
-    - **micCh**: マイクロホンのチャンネル（1-4, 9-12の8チャンネル）
+### Example
+- `processWavFiles("openLounge", "2A", 48000, [0, 2], [0, 10])`
+  - **Output File Name**: soundSrc_fs48000_td0.000-2.000_fd0.000-10.000_micCh.wav
+    - **soundSrc**: sound source（int1, int2, and target）
+    - **td**: Delay of specified recording start time
+    - **fd**: Deviation of specified sample rate
+    - **micCh**: channel of microphone（8 channels: 1-4, 9-12）
 
-- processWavFiles("musicRoom", "3B", 96000, [1, 2, 3], [2, 4, 6])を実行した場合
-  - **出力ファイル名**: soundSrc_fs96000_td1.000-2.000-3.000_fd2.000-4.000-6.000_micCh.wav
-    - **soundSrc**: 音源（int1, int2, int3, targetの4種類）
-    - **td**: 指定した録音開始時刻の遅延
-    - **fd**: 指定したサンプリング周波数のずれ
-    - **micCh**: マイクロホンのチャンネル（1-12の12チャンネル）
+- `processWavFiles("musicRoom", "3B", 96000, [1, 2, 3], [2, 4, 6])`
+  - **Output File Name**: soundSrc_fs96000_td1.000-2.000-3.000_fd2.000-4.000-6.000_micCh.wav
+    - **soundSrc**: sound source（int1, int2, int3, and target）
+    - **td**: Delay of specified recording start time
+    - **fd**: Deviation of specified sample rate
+    - **micCh**: channel of microphone（1-12）
 
-## 測定環境
+## Measurement Condition
 
-### 使用機材
+### Equipment
 
-- **マイクロホン**: JTS CX-500（コンデンサマイク）
-  - 4つのマイクロホンを等間隔で直線状に配置して1つのマイクロホンアレイを構成
+- **microphone**: JTS CX-500（capacitor microphone）
+  - 4 microphones are arranged in a straight line with equal intervals to configure a single microphone array 
 ![alt text](./image/image.jpg)
-- **スピーカー**: AURATONE 5C Super Sound Cube
+- **Speaker**: AURATONE 5C Super Sound Cube
 ![alt text](./image/image-1.jpg)
-- **パワーアンプ**: AURATONE A2-30（5C Super Sound Cube専用）
+- **Power amplifier**: AURATONE A2-30（Exclusive for 5C Super Sound Cube）
 ![alt text](./image/image-2.jpg) ![alt text](./image/image-3.jpg)
-- **オーディオインターフェース**: YAMAHA DM3（96kHz/32ビットのサンプリング周波数で最大8チャンネルの同期再生と16チャンネルの同期録音が可能）
+- **Audio interface**: YAMAHA DM3（Up to 8 channels of synchronized playback and 16 channels of synchronized recording at 96 kHz/32-bit sample rate）
 ![alt text](./image/image-4.jpg)
-- **AD/DAコンバーター**: Tio1608-D2（全チャンネルの同期AD/DA変換を実現）
-- **ソフトウェア**: MATLABのImpulse Response Measurerツール
+- **AD/DA converter**: Tio1608-D2（Synchronous AD/DA conversion of all channels）
+- **Software**: Impulse Response Measurer tool in MATLAB
   - Sample Rate [Hz] : 96000
   - Samples per Frame : 1024
   - Method : Swept sine
@@ -95,40 +95,39 @@ MATLABのコマンドウィンドウ上で下記の関数を実行すること�
   - Duration of Runs [s] : 10
   - Excitation Level [dBFS] : -6
 
-### システム構成図
+### System Configuration Diagram
 ![alt text](./image/image-5.jpg)
 
-## マイクロホンアレイとスピーカーの配置
+## Microphone Arrays and Speaker Placement
 
-### 音楽練習室
+### Music Room
 
-- **室温**: 16°C
-- **湿度**: 45%
-- **部屋の大きさ**: 8.5 m × 6.7 m ×  m
+- **Room temperature**: 16°C
+- **Humidity**: 45%
+- **Room size**: 8.5 m × 6.7 m ×  m
 <img src="./image/image-6.jpg" width="75%"> <img src="./image/image-7.jpg" width="75%">
-- **マイクロホンアレイの高さ**: 床から1.2 m
-- **スピーカーコーンの高さ**: 床から1.2 m
+- **Height of microphone arrays**: 1.2 m from floor
+- **Height of speaker cone**: 1.2 m from floor
 <img src="./image/image-11.jpg" width="75%">
-- **マイクロホンアレイの間隔**: 1 cm
+- **Interval of microphone array**: 1 cm
 <img src="./image/image-26.jpg" width="75%">
 
-### オープンラウンジ
+### Open Lounge
 
-#### 実験環境
-- **室温**: 19°C
-- **湿度**: 35%
-- **部屋の大きさ**: 8 m × 7 m × 2.2 m
+- **Room temperature**: 19°C
+- **Humidity**: 35%
+- **Room size**: 8 m × 7 m × 2.2 m
 <img src="./image/image-14.jpg" width="75%"> <img src="./image/image-15.jpg" width="75%">
-- **マイクロホンアレイの高さ**: 床から1.2 m
-- **スピーカーコーンの高さ**: 床から1.2 m
+- **Height of microphone arrays**: 1.2 m from floor
+- **Height of speaker cone**: 1.2 m from floor
 <img src="./image/image-16.jpg" width="75%">
-- **マイクロホンアレイの間隔**: 1 cm
+- **Interval of microphone array**: 1 cm
 <img src="./image/image-27.jpg" width="75%">
 
-## 収録環境
-以下の5つの状況をもとに、複数のマイクロホンアレイ及び音源を配置しました．
+## Recording Condition
+Multiple micorophone arrays and sound sources were placed based on the following 5 situations.
 
-- **マイクロホンアレイが2個のケース**
+- **Case with 2 microphone arrays**
 
 ![alt text](./image/image-18.jpg)
 
@@ -136,7 +135,7 @@ MATLABのコマンドウィンドウ上で下記の関数を実行すること�
 
 ![alt text](./image/image-20.jpg)
 
-- **マイクロホンアレイが3個のケース**
+- **Case with 3 microphone arrays**
 
 ![alt text](./image/image-21.jpg)
 
