@@ -73,13 +73,21 @@ By executing the function processWavFiles, a new "output" folder is created in t
 
 - **microphone**: JTS CX-500（capacitor microphone）
   - 4 microphones are arranged in a straight line with equal intervals to configure a single microphone array 
+
 ![alt text](./image/image.jpg)
+
 - **Speaker**: AURATONE 5C Super Sound Cube
+
 ![alt text](./image/image-1.jpg)
+
 - **Power amplifier**: AURATONE A2-30（Exclusive for 5C Super Sound Cube）
+
 ![alt text](./image/image-2.jpg) ![alt text](./image/image-3.jpg)
+
 - **Audio interface**: YAMAHA DM3（Up to 8 channels of synchronized playback and 16 channels of synchronized recording at 96 kHz/32-bit sample rate）
+
 ![alt text](./image/image-4.jpg)
+
 - **AD/DA converter**: Tio1608-D2（Synchronous AD/DA conversion of all channels）
 - **Software**: Impulse Response Measurer tool in MATLAB
   - Sample Rate [Hz] : 96000
@@ -96,6 +104,7 @@ By executing the function processWavFiles, a new "output" folder is created in t
   - Excitation Level [dBFS] : -6
 
 ### System Configuration Diagram
+
 ![alt text](./image/image-5.jpg)
 
 ## Microphone Arrays and Speaker Placement
@@ -105,11 +114,16 @@ By executing the function processWavFiles, a new "output" folder is created in t
 - **Room temperature**: 16°C
 - **Humidity**: 45%
 - **Room size**: 8.5 m × 6.7 m ×  m
+
 <img src="./image/image-6.jpg" width="75%"> <img src="./image/image-7.jpg" width="75%">
+
 - **Height of microphone arrays**: 1.2 m from floor
 - **Height of speaker cone**: 1.2 m from floor
+
 <img src="./image/image-11.jpg" width="75%">
+
 - **Interval of microphone array**: 1 cm
+
 <img src="./image/image-26.jpg" width="75%">
 
 ### Open Lounge
@@ -117,11 +131,16 @@ By executing the function processWavFiles, a new "output" folder is created in t
 - **Room temperature**: 19°C
 - **Humidity**: 35%
 - **Room size**: 8 m × 7 m × 2.2 m
+
 <img src="./image/image-14.jpg" width="75%"> <img src="./image/image-15.jpg" width="75%">
+
 - **Height of microphone arrays**: 1.2 m from floor
 - **Height of speaker cone**: 1.2 m from floor
+
 <img src="./image/image-16.jpg" width="75%">
+
 - **Interval of microphone array**: 1 cm
+
 <img src="./image/image-27.jpg" width="75%">
 
 ## Recording Condition
