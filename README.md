@@ -1,7 +1,7 @@
-# Inpulse response dataset that can simulate asynchrony between microphone arrays
+# Impulse response dataset that can simulate asynchronous between microphone arrays
 
 ## Summary
-This inpulse response dataset was recorded by perfectly synchronized micropohones. Under the assumption that between microphone arrays can not be synchronized, the simulation aim is to reproduce asynchronous conditions between microphone arrays by setting the delay of recording start time and the deviation of the sample rate. This dataset was recorded in two locations, a music practice room and an open lounge, and under a variety of conditions. The script for running the simulations are also included.
+This impulse response dataset was recorded by perfectly synchronized microphones. Under the assumption that between microphone arrays can not be synchronized, the simulation aim is to reproduce asynchronous conditions between microphone arrays by setting the delay of recording start time and the deviation of the sample rate. This dataset was recorded in two locations, a music practice room and an open lounge, and under a variety of conditions. The script for running the simulations are also included.
 
 ## Folder Structure
 ~~~
