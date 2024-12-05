@@ -1,7 +1,7 @@
 % Function to process WAV files according to the user's desired roomType and recCond
 function processWavFiles(roomType, recCond, fs, recTimeDelay, recFsDeviation)
 
-    % Set directory and sound source names
+    % Set directory and sound source
     dirName = "./impulse_dataset/";
     srcName = ["target", "int1", "int2", "int3"];
 
@@ -32,11 +32,8 @@ function processWavFiles(roomType, recCond, fs, recTimeDelay, recFsDeviation)
 
     % Generate output file paths and call resampleCorrectWav for each sound source
     for iSrc = 1:nSrc
-        % for iCh = 1:length(listCh)
-        outFilePath(iSrc, :) = genOutFilePath(recCond, srcName(iSrc), fs, recTimeDelay, recFsDeviation);
-        % end
-
         inCurrentFiles = inFilePath(iSrc, :);
+        outFilePath(iSrc, :) = genOutFilePath(roomType, recCond, srcName(iSrc), fs, recTimeDelay, recFsDeviation);
         outCurrentFiles = outFilePath(iSrc, :);
         resampleCorrectWav(inCurrentFiles, outCurrentFiles, fs, recTimeDelay, recFsDeviation); 
     end
@@ -102,6 +99,11 @@ end
 % Function to generate delay of recording time
 function audioDataDelayed = applyRecTimeDelay(audioData, fs, recTimeDelay)
 
+    % Check if recTimeDelay contains negative values
+    if any(recTimeDelay < 0)
+        error('recTimeDelay contains negative values. All elements must be non-negative.');
+    end
+
     % Transpose audioData
     tAudioData = audioData.';
 
@@ -150,6 +152,11 @@ end
 
 % Function to apply sample rate deviation
 function applyRecFsdeviation(audioData, fs, recFsDeviation, inputFiles)
+
+    % Check if recFsDeviation contains negative values
+    if any(recFsDeviation < 0)
+        error('recFsDeviation contains negative values. All elements must be non-negative.');
+    end
 
     % comvert ppm value to sample rate
     newFs = fs * (1 + recFsDeviation * 10^-6);
@@ -210,7 +217,7 @@ function applyRecFsdeviation(audioData, fs, recFsDeviation, inputFiles)
 end
 
 % Function to generate output path
-function outputFiles = genOutFilePath(recCond, soundSrc, fs, recTimeDelay, recFsDeviation)
+function outputFiles = genOutFilePath(roomType, recCond, soundSrc, fs, recTimeDelay, recFsDeviation)
 
     % Create output derectory
     outputDir = "./output/";
@@ -236,11 +243,11 @@ function outputFiles = genOutFilePath(recCond, soundSrc, fs, recTimeDelay, recFs
     % Generate output file path
     if nSrc == 3
         for iCh = 1:length(listCh)
-            outputFiles(iCh) = outputDir + soundSrc + "_fs" + fs + "_td" + sprintf("%5.3f", recTimeDelay(1)) + "-" + sprintf("%5.3f", recTimeDelay(2)) + "_fd" + sprintf("%5.3f", recFsDeviation(1)) + "-" + sprintf("%5.3f", recFsDeviation(2)) + "_" + listCh(iCh) + ".wav";
+            outputFiles(iCh) = outputDir + roomType + "_" + recCond + "_" + soundSrc + "_fs" + fs + "_td" + sprintf("%5.3f", recTimeDelay(1)) + "-" + sprintf("%5.3f", recTimeDelay(2)) + "_fd" + sprintf("%5.3f", recFsDeviation(1)) + "-" + sprintf("%5.3f", recFsDeviation(2)) + "_" + listCh(iCh) + ".wav";
         end
     elseif nSrc == 4
         for iCh = 1:length(listCh)
-            outputFiles(iCh) = outputDir + soundSrc + "_fs" + fs + "_td" + sprintf("%5.3f", recTimeDelay(1)) + "-" + sprintf("%5.3f", recTimeDelay(2)) + "-" + sprintf("%5.3f", recTimeDelay(3)) + "_fd" + sprintf("%5.3f", recFsDeviation(1)) + "-" + sprintf("%5.3f", recFsDeviation(2)) + "-" + sprintf("%5.3f", recFsDeviation(3)) + "_" + listCh(iCh) + ".wav";
+            outputFiles(iCh) = outputDir + roomType + "_" + recCond + "_" + soundSrc + "_fs" + fs + "_td" + sprintf("%5.3f", recTimeDelay(1)) + "-" + sprintf("%5.3f", recTimeDelay(2)) + "-" + sprintf("%5.3f", recTimeDelay(3)) + "_fd" + sprintf("%5.3f", recFsDeviation(1)) + "-" + sprintf("%5.3f", recFsDeviation(2)) + "-" + sprintf("%5.3f", recFsDeviation(3)) + "_" + listCh(iCh) + ".wav";
         end
     end
 end
