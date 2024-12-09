@@ -7,7 +7,7 @@ This impulse response dataset was recorded by perfectly synchronized microphones
 ~~~
 impulse/
 ├── impulse_dataset/  # Folder to store input WAV files
-│   └── (120 files)
+│   └── (336 files)
 ├── processWavFiles
 ├── image/
 |    └── (19 files)
