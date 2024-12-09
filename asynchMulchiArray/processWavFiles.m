@@ -83,7 +83,7 @@ function resampleCorrectWav(inputFiles, outputFiles, inputFs, recTimeDelay, recF
 
             disp(['Audio data was resampled from ', num2str(originalFs), ' Hz to ', num2str(fs), ' Hz.']);
         else
-            resampledData(i, :) = audioData;
+            resampledData(i, :) = currentAudioData;
             disp('No resampling was required.');
         end
     end
@@ -209,10 +209,8 @@ function applyRecFsdeviation(audioData, fs, recFsDeviation, inputFiles)
     end
 
     % Output resampled data as a WAV file
-    for j = 1:size(groups, 1)
-        for k = 1:length(inputFiles)
-            audiowrite(inputFiles(k), audioDataAdjusted(:, k), fs);
-        end
+    for k = 1:length(inputFiles)
+        audiowrite(inputFiles(k), audioDataAdjusted(:, k), fs);
     end
 end
 
